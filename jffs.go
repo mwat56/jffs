@@ -1,9 +1,3 @@
-/*
-   Copyright © 2019 M.Watermann, 10247 Berlin, Germany
-                  All rights reserved
-               EMail : <support@mwat.de>
-*/
-
 package jffs
 
 //lint:file-ignore ST1017 - I prefer Yoda conditions
@@ -19,9 +13,16 @@ import (
  */
 
 type (
-	// Simple struct embedding a `http.File` and ignoring directory reads.
+	// Simple struct embedding a `http.File` and ignoring
+	// directory reads.
 	tNeuteredReaddirFile struct {
 		http.File
+	}
+
+	// Simple struct embedding a `http.FileSystem` that
+	// can't read directories.
+	tJustFilesFilesystem struct {
+		jffs http.FileSystem
 	}
 )
 
@@ -30,23 +31,17 @@ type (
 // returned by Lstat, in directory order.
 //
 // NOTE: This implementation ignores `aCount` and returns nothing, i.e.
-// both the FileInfo list and the error are `nil`.
+// both the `FileInfo` list and the `error` are `nil`.
 func (f tNeuteredReaddirFile) Readdir(aCount int) ([]os.FileInfo, error) {
 	return nil, nil
 } // Readdir()
 
-type (
-	// Simple struct embedding a `http.FileSystem` that
-	// can't read directories.
-	justFilesFilesystem struct {
-		jffs http.FileSystem
-	}
-)
-
 // Open is a wrapper around the `Open()` method of the embedded FileSystem
-// that returns a `http.File` that can't read directory contents.
-func (fs justFilesFilesystem) Open(aName string) (http.File, error) {
-	f, err := fs.jffs.Open(aName)
+// that returns a `http.File` which can't read directory contents.
+//
+//	`aName` is the name of the file to open.
+func (ffs tJustFilesFilesystem) Open(aName string) (http.File, error) {
+	f, err := ffs.jffs.Open(aName)
 	if nil != err {
 		return nil, err
 	}
@@ -60,16 +55,17 @@ func (fs justFilesFilesystem) Open(aName string) (http.File, error) {
 // with the contents of the file system rooted at `aRoot`.
 //
 // To use the operating system's file system implementation,
-// use http.Dir:
+// use `http.Dir()``:
 //
-//     http.Handle("/", http.FileServer(http.Dir("/tmp")))
+//	myHandler := http.FileServer(http.Dir("/tmp")))
+//
+// To use this implementation you'd use:
+//
+//	myHandler := jffs.FileServer(http.Dir("/tmp")))
 //
 //	`aRoot` The root of the filesystem to serve.
 func FileServer(aRoot http.FileSystem) http.Handler {
-	// result.docFS = http.FileServer(http.Dir(CalibreLibraryPath()))
-	fs := justFilesFilesystem{aRoot}
-
-	return http.FileServer(fs)
+	return http.FileServer(tJustFilesFilesystem{aRoot})
 } // FileServer()
 
 /* _EoF_ */

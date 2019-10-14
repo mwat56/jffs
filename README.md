@@ -1,11 +1,5 @@
 # jffs
 
-- [jffs](#jffs)
-	- [Purpose](#purpose)
-	- [Installation](#installation)
-	- [Usage](#usage)
-	- [Licence](#licence)
-
 [![golang](https://img.shields.io/badge/Language-Go-green.svg)](https://golang.org)
 [![GoDoc](https://godoc.org/github.com/mwat56/jffs?status.svg)](https://godoc.org/github.com/mwat56/jffs)
 [![Go Report](https://goreportcard.com/badge/github.com/mwat56/jffs)](https://goreportcard.com/report/github.com/mwat56/jffs)
@@ -14,7 +8,20 @@
 [![Tag](https://img.shields.io/github/tag/mwat56/jffs.svg)](https://github.com/mwat56/jffs/tags)
 [![License](https://img.shields.io/github/mwat56/jffs.svg)](https://github.com/mwat56/jffs/blob/master/LICENSE)
 
+- [jffs](#jffs)
+	- [Purpose](#purpose)
+	- [Installation](#installation)
+	- [Usage](#usage)
+	- [Licence](#licence)
+
 ## Purpose
+
+Often you don't want remote users to access your filesystem's static files outside the URLs you provide with your web-application.
+Especially if there are file(s) in your (sub-)directories which shouldn't be served to others.
+Therefor it's imperative to hamper the Go fileserver insofar as to _not_ produce directory listings showing all available files.
+That's were this small package comes in.
+
+Credits go to [Brad Fitzpatrick](https://groups.google.com/d/msg/golang-nuts/bStLPdIVM6w/hidTJgDZpHcJ).
 
 ## Installation
 
@@ -24,13 +31,19 @@ You can use `Go` to install this package for you:
 
 ## Usage
 
-    //TODO
+This package exports a single function `FileServer()`.
+So, while you're used to call
+
+	myStaticDirectory :="/tmp"
+	myStaticHandler := http.FileServer(http.Dir(myStaticDirectory)))
+
+to use _this_ implementation you'd now just use:
+
+	myStaticHandler := jffs.FileServer(http.Dir(myStaticDirectory)))
+
+That's all; just replace `http` by `jffs`.
 
 ## Licence
-
-        Copyright © 2019 M.Watermann, 10247 Berlin, Germany
-                        All rights reserved
-                    EMail : <support@mwat.de>
 
 > This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 3 of the License, or (at your option) any later version.
 >

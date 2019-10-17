@@ -15,45 +15,45 @@ import (
 )
 
 func TestFileServer(t *testing.T) {
-	dir, _ := filepath.Abs("./")
+	dir, _ := filepath.Abs("./internal")
 	fs1 := http.Dir(dir)
-	var w1 http.Handler
 	type args struct {
 		aRoot http.FileSystem
 	}
 	tests := []struct {
 		name string
 		args args
-		want http.Handler
 	}{
 		// TODO: Add test cases.
-		{" 1", args{fs1}, w1},
+		{" 1", args{fs1}},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			if got := FileServer(tt.args.aRoot); nil == got {
 				t.Errorf("FileServer() = %v, want (!nul))", got)
+				return
 			}
 		})
 	}
 } // TestFileServer()
 
 func Test_tJustFilesFilesystem_Open(t *testing.T) {
-	dir, _ := filepath.Abs("./")
-	fs1 := tJustFilesFilesystem{http.Dir(dir)}
+	dir, _ := filepath.Abs("./internal")
+	fs1 := tOnlyFilesFilesystem{http.Dir(dir)}
 	type args struct {
 		aName string
 	}
 	tests := []struct {
 		name    string
-		fs      tJustFilesFilesystem
+		fs      tOnlyFilesFilesystem
 		args    args
 		wantErr bool
 	}{
 		// TODO: Add test cases.
-		{" 1", fs1, args{"index.html"}, false},
-		{" 2", fs1, args{""}, false},
-		{" 3", fs1, args{"does.not.exist"}, true},
+		{" 1", fs1, args{""}, false},
+		{" 2", fs1, args{"index.html"}, false},
+		{" 3", fs1, args{"internal"}, true},
+		{" 4", fs1, args{"does.not.exist"}, true},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
@@ -75,7 +75,7 @@ func Test_tJustFilesFilesystem_Open(t *testing.T) {
 
 func Test_tNeuteredReaddirFile_Readdir(t *testing.T) {
 	dir, _ := filepath.Abs("./")
-	ffs1 := tJustFilesFilesystem{http.Dir(dir)}
+	ffs1 := tOnlyFilesFilesystem{http.Dir(dir)}
 	nf1, _ := ffs1.Open("")
 	var w1 []os.FileInfo
 	type args struct {

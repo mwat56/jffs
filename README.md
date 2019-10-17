@@ -1,4 +1,4 @@
-# jffs
+# jffs – Just Files Filesystem
 
 [![golang](https://img.shields.io/badge/Language-Go-green.svg)](https://golang.org)
 [![GoDoc](https://godoc.org/github.com/mwat56/jffs?status.svg)](https://godoc.org/github.com/mwat56/jffs)
@@ -8,7 +8,7 @@
 [![Tag](https://img.shields.io/github/tag/mwat56/jffs.svg)](https://github.com/mwat56/jffs/tags)
 [![License](https://img.shields.io/github/mwat56/jffs.svg)](https://github.com/mwat56/jffs/blob/master/LICENSE)
 
-- [jffs](#jffs)
+- [jffs – Just Files Filesystem](#jffs-%e2%80%93-just-files-filesystem)
 	- [Purpose](#purpose)
 	- [Installation](#installation)
 	- [Usage](#usage)
@@ -21,7 +21,7 @@ Especially if there are file(s) in your (sub-)directories which shouldn't be ser
 Therefor it's imperative to hamper the Go fileserver insofar as to _not_ produce directory listings showing all available files.
 That's were this small package comes in.
 
-Credits go to [Brad Fitzpatrick](https://groups.google.com/d/msg/golang-nuts/bStLPdIVM6w/hidTJgDZpHcJ).
+Credits go to [Brad Fitzpatrick](https://groups.google.com/d/msg/golang-nuts/bStLPdIVM6w/hidTJgDZpHcJ) and [Alex Edwards](https://www.alexedwards.net/blog/disable-http-fileserver-directory-listings).
 
 ## Installation
 

@@ -53,10 +53,8 @@ func (ffs tOnlyFilesFilesystem) Open(aName string) (http.File, error) {
 	}
 
 	if fInfo, err := f.Stat(); (nil == err) && fInfo.IsDir() {
-		f.Close() // free directory's file handle
-
 		idx := strings.TrimSuffix(aName, `/`) + `/index.html`
-		if f, err = ffs.offs.Open(idx); nil != err {
+		if _, err = ffs.offs.Open(idx); nil != err {
 			return nil, err
 		}
 	}

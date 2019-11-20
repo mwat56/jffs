@@ -1,3 +1,9 @@
+/*
+   Copyright © 2019 M.Watermann, 10247 Berlin, Germany
+                  All rights reserved
+               EMail : <support@mwat.de>
+*/
+
 package main
 
 //lint:file-ignore ST1017 - I prefer Yoda conditions
@@ -21,9 +27,7 @@ func main() {
 		WriteTimeout:      10 * time.Second,
 	}
 
-	if err := server.ListenAndServe(); nil != err {
-		log.Fatal(err)
-	}
+	log.Fatal(server.ListenAndServe())
 } // main()
 
 /* _EoF_ */

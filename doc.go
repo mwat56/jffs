@@ -1,10 +1,9 @@
 /*
 
-Package jffs implements a handler that serves HTTP requests
-with the contents of the file system rooted at `aRoot` but
-without a complete directory listing.
+Package jffs implements a handler that serves HTTP requests with the contents
+of the file system rooted at `aRoot` but without a complete directory listing.
 
-    Copyright © 2019 M.Watermann, 10247 Berlin, Germany
+    Copyright © 2019, 2020 M.Watermann, 10247 Berlin, Germany
                     All rights reserved
                 EMail : <support@mwat.de>
 

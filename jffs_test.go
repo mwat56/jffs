@@ -1,5 +1,5 @@
 /*
-   Copyright © 2019 M.Watermann, 10247 Berlin, Germany
+   Copyright © 2019, 2020 M.Watermann, 10247 Berlin, Germany
                All rights reserved
            EMail : <support@mwat.de>
 */
@@ -15,10 +15,9 @@ import (
 )
 
 func TestFileServer(t *testing.T) {
-	dir, _ := filepath.Abs("./internal")
-	fs1 := http.Dir(dir)
+	fs1, _ := filepath.Abs("./internal")
 	type args struct {
-		aRoot http.FileSystem
+		aRoot string
 	}
 	tests := []struct {
 		name string
@@ -26,6 +25,7 @@ func TestFileServer(t *testing.T) {
 	}{
 		// TODO: Add test cases.
 		{" 1", args{fs1}},
+		{" 2", args{`/tmp`}},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {

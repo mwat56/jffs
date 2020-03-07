@@ -1,5 +1,5 @@
 /*
-   Copyright © 2019 M.Watermann, 10247 Berlin, Germany
+   Copyright © 2019, 2020 M.Watermann, 10247 Berlin, Germany
                   All rights reserved
                EMail : <support@mwat.de>
 */
@@ -21,7 +21,7 @@ func main() {
 	dir, _ := filepath.Abs("./internal/")
 	server := &http.Server{
 		Addr:              ":4321",
-		Handler:           jffs.FileServer(http.Dir(dir)),
+		Handler:           jffs.FileServer(dir),
 		IdleTimeout:       120 * time.Second,
 		ReadHeaderTimeout: 5 * time.Second,
 		WriteTimeout:      10 * time.Second,

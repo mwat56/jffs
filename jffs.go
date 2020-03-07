@@ -1,3 +1,9 @@
+/*
+   Copyright © 2019, 2020 M.Watermann, 10247 Berlin, Germany
+               All rights reserved
+           EMail : <support@mwat.de>
+*/
+
 package jffs
 
 //lint:file-ignore ST1017 - I prefer Yoda conditions
@@ -74,11 +80,11 @@ func (ffs tOnlyFilesFilesystem) Open(aName string) (http.File, error) {
 //
 // To use this implementation you'd use:
 //
-//	myHandler := jffs.FileServer(http.Dir("/tmp")))
+//	myHandler := jffs.FileServer("/tmp"))
 //
 //	`aRoot` The root of the filesystem to serve.
-func FileServer(aRoot http.FileSystem) http.Handler {
-	return http.FileServer(tOnlyFilesFilesystem{aRoot})
+func FileServer(aRoot string) http.Handler {
+	return http.FileServer(tOnlyFilesFilesystem{http.Dir(aRoot)})
 } // FileServer()
 
 /* _EoF_ */

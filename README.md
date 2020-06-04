@@ -41,7 +41,7 @@ So, while you're used to call
 
 to use _this_ implementation you'd now just use:
 
-	myStaticHandler := jffs.FileServer(myStaticDirectory))
+	myStaticHandler := jffs.FileServer(myStaticDirectory)
 
 That's all.
 

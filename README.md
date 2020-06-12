@@ -6,7 +6,7 @@
 [![Issues](https://img.shields.io/github/issues/mwat56/jffs.svg)](https://github.com/mwat56/jffs/issues?q=is%3Aopen+is%3Aissue)
 [![Size](https://img.shields.io/github/repo-size/mwat56/jffs.svg)](https://github.com/mwat56/jffs/)
 [![Tag](https://img.shields.io/github/tag/mwat56/jffs.svg)](https://github.com/mwat56/jffs/tags)
-[![License](https://img.shields.io/github/mwat56/jffs.svg)](https://github.com/mwat56/jffs/blob/master/LICENSE)
+[![License](https://img.shields.io/github/mwat56/jffs.svg)](https://github.com/mwat56/jffs/blob/main/LICENSE)
 
 - [jffs – Just Files Filesystem](#jffs-%e2%80%93-just-files-filesystem)
 	- [Purpose](#purpose)

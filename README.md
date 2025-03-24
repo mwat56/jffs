@@ -47,7 +47,7 @@ That's all.
 
 ## Licence
 
-    Copyright © 2019, 2022 M.Watermann, 10247 Berlin, Germany
+    Copyright © 2019, 2025 M.Watermann, 10247 Berlin, Germany
                     All rights reserved
                 EMail : <support@mwat.de>
 
@@ -58,3 +58,4 @@ That's all.
 > You should have received a copy of the GNU General Public License along with this program. If not, see the [GNU General Public License](http://www.gnu.org/licenses/gpl.html) for details.
 
 ----
+[![GFDL](https://www.gnu.org/graphics/gfdl-logo-tiny.png)](http://www.gnu.org/copyleft/fdl.html)
